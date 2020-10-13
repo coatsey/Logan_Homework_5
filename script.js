@@ -12,4 +12,11 @@ $(document).ready(function() {
     nowHour12 = 1;
   }
 
+  let $dateHeading = $('#navbar-subtitle');
+  $dateHeading.text(now);
+
+  var saveIcon = "./images/save-regular.svg";
+
+  let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
+
 })
