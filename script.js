@@ -43,6 +43,35 @@ $(document).ready(function() {
     $rowDiv.addClass('row');
     $rowDiv.addClass('plannerRow');
     $rowDiv.attr('hour-index',hour);
+
+    let $col12TimeDiv = $('<div>');
+    $col12TimeDiv.addClass('col-md-2');
+
+    var $timeBoxSpn = $('<span>');
+    $timeBoxSpn.attr('class','timeBox');
+
+    let displayHour = 0;
+    let ampm = "";
+    if (hour > 12) {
+      displayHour = hour - 12;
+      ampm = "pm";
+    } else {
+      displayHour = hour;
+      ampm = "am";
+    }
+
+    $timeBoxSpn.text(`${displayHour} ${ampm}`);
+
+    $rowDiv.append($col12TimeDiv);
+    $col12TimeDiv.append($timeBoxSpn);
+
+    let $dailyPlanSpn = $('<input>');
+
+    $dailyPlanSpn.attr('id', `input-${index}`);
+    $dailyPlanSpn.attr('hour-index',index);
+    $dailyPlanSpn.attr('type','text');
+    $dailyPlanSpn.attr('class','dailyPlan');
+    
   }
 
 })
