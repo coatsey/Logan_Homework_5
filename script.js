@@ -79,18 +79,18 @@ $(document).ready(function () {
     $dailyPlanSpn.val(planTextArr[index]);
 
     let $col9IptDiv = $("<div>");
-    $col9IptDiv.addClass('col-md-1');
+    $col9IptDiv.addClass("col-md-1");
 
     $rowDiv.append($col9IptDiv);
     $col9IptDiv.append($dailyPlanSpn);
 
-    let $col1SaveDiv = $('<div>');
-    $col1SaveDiv.addClass('col-md-1');
+    let $col1SaveDiv = $("<div>");
+    $col1SaveDiv.addClass("col-md-1");
 
-    let $saveBtn = $('<i>');
-    $saveBtn.attr('id', `saveid-${index}`);
-    $saveBtn.attr('save-id',index);
-    $saveBtn.attr('class',"far fa-save saveIcon");
+    let $saveBtn = $("<i>");
+    $saveBtn.attr("id", `saveid-${index}`);
+    $saveBtn.attr("save-id", index);
+    $saveBtn.attr("class", "far fa-save saveIcon");
 
     $rowDiv.append($col1SaveDiv);
     $col1SaveDiv.append($saveBtn);
@@ -98,6 +98,69 @@ $(document).ready(function () {
     updateRowColor($rowDiv, hour);
 
     $plannerDiv.append($rowDiv);
-  };
-  
+  }
+
+  function updateRowColor($hourRow, hour) {
+    if (test) {
+      console.log("rowColor ", nowHour24, hour);
+    }
+    if (hour < nowHour24) {
+      if (test) {
+        console.log("lessThan");
+      }
+      $hourRow.css("background-color", "lightgrey");
+    } else if (hour > nowHour24) {
+      if (test) {
+        console.log("greaterthan");
+      }
+      $hourRow.css("background-color", "lightgreen");
+    } else {
+      if (test) {
+        console.log("eqaul");
+      }
+      $hourRow.css("background-color", "tomato");
+    }
+  }
+
+  $(document).on("click", "i", function (event) {
+    event.preventDefault();
+
+    if (test) {
+      console.log("click pta before " + planTextArr);
+    }
+
+    let $index = $(this).attr("save-id");
+
+    let inputId = "#input-" + $index;
+    let $value = $(inputId).val();
+
+    planTextArr[$index] = $value;
+
+    if (test) {
+      console.log("value ", $value);
+    }
+    if (test) {
+      console.log("index ", $index);
+    }
+    if (test) {
+      console.log("click pta after " + planTextArr);
+    }
+
+    $(`#saveid-${$index}`).removeClass("shadowPulse");
+    localStorage.setItem("storedPlans", JSON.stringify(planTextArr));
+  });
+
+  $(document).on("change", "input", function (event) {
+    event.preventDefault();
+    if (test) {
+      console.log("onChange");
+    }
+    if (test) {
+      console.log("id", $(this).attr("hour-index"));
+    }
+
+    let i = $(this).attr("hour-index");
+
+    $(`#saveid-${i}`).addClass("shadowPulse");
+  });
 });
