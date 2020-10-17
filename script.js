@@ -79,7 +79,7 @@ $(document).ready(function () {
     $dailyPlanSpn.val(planTextArr[index]);
 
     let $col9IptDiv = $("<div>");
-    $col9IptDiv.addClass("col-md-1");
+    $col9IptDiv.addClass("col-md-9");
 
     $rowDiv.append($col9IptDiv);
     $col9IptDiv.append($dailyPlanSpn);
